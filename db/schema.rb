@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704220123) do
+ActiveRecord::Schema.define(:version => 20120705011155) do
+
+  create_table "members", :force => true do |t|
+    t.string   "code"
+    t.integer  "parent_id"
+    t.integer  "person_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "members", ["parent_id"], :name => "index_members_on_parent_id"
+  add_index "members", ["person_id"], :name => "index_members_on_person_id"
+
+  create_table "people", :force => true do |t|
+    t.string   "name"
+    t.string   "last_name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
@@ -39,9 +57,11 @@ ActiveRecord::Schema.define(:version => 20120704220123) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "person_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["person_id"], :name => "index_users_on_person_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

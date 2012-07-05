@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Code:</b>
+  <%= @member.code %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%= @member.parent %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%= @member.person %>
+</p>
+
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>
