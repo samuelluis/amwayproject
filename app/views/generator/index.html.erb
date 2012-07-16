@@ -1,0 +1,49 @@
+
+<div id='header' class="container_16">
+	<h3 id="title">Amway Project</h3>
+	<h5 id="subtitle">Network Model Generator</h5>
+	<ul id="menu">
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Generator</a></li>
+		<li><a href="#">Logout</a></li>
+	</ul>
+</div>
+<div id="body">
+	<table class="circles">
+		<tr>
+			<td>
+				<%= render :partial => "generator/circle", :locals => { :id => 1, :code => "1234", :name => "Samuel", :last_name => "Luis De La Cruz", :parent_id => nil, :points => "300" }%>
+			</td>
+		</tr>
+		<tr>
+			
+		</tr>
+	</table>
+</div>
+
+<div id="member_form" title="Add Member">
+	<p class="validateTips">All form fields are required.</p>
+	<fieldset>
+		<input type="hidden" name="id" id="id" />
+		<input type="hidden" name="parent_id" id="parent_id" />
+		<div class="field">
+			<label for="code">Code</label>
+			<input type="text" name="code" id="code" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="name">Name</label>
+			<input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="last_name">Last Name</label>
+			<input type="text" name="last_name" id="last_name" value="" class="text ui-widget-content ui-corner-all" />
+		</div>
+	</fieldset>
+</div>
+
+<div id="confirm" title="Confirmation">
+	<p>
+		Are you sure of remove the member ?<br><br>
+		Children members will be removed to.
+	</p>
+</div>

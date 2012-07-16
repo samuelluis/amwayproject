@@ -1,0 +1,31 @@
+<div class='circle' id='member_<%= id %>'>
+	<div class='outer-circle'></div>
+	<div class='middle-circle'>
+		<div class='action-circle flash' title='Remove' onclick='removeMember(event.target);' style='margin-left:51px;margin-top:4px;'>
+			<span class='content'>-</span>
+		</div>
+		<div class='action-circle flash' title='Add' onclick='addMember(event.target);' style='margin-left:51px;margin-top:98px;'>
+			<span class='content'>+</span>
+		</div>
+		<div class='action-circle flash' title='Edit' onclick='editMember(event.target);' style='margin-left:4px;margin-top:51px;'>
+			<span class='content'>!</span>
+		</div>
+		<div class='action-circle flash' title='Show' onclick='showMember(event.target);' style='margin-left:98px;margin-top:51px;'>
+			<span class='content'>?</span>
+		</div>
+	</div>
+	<div class='inner-circle'>
+		<div class='content'>&nbsp;</div>
+		<div class='content'>
+			<span class='member'><%= "#{name} #{last_name}" %></span>
+			<span class='points'><%= points %></span>
+		</div>
+	</div>
+	<div class='data' style='display:none;'>
+		<input value='<%= id %>' class='id' />
+		<input name='members[<%= id %>][parent_id]' id='members_<%= id %>_parent_id' value='<%= parent_id %>' class='parent_id' />
+		<input name='members[<%= id %>][code]' id='members_<%= id %>_code' value='<%= code %>' class='code' />
+		<input name='members[<%= id %>][name]' id='members_<%= id %>_name' value='<%= name %>' class='name' />
+		<input name='members[<%= id %>][last_name]' id='members_<%= id %>_last_name' value='<%= last_name %>' class='last_name' />
+	</div>
+</div>
