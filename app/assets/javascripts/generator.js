@@ -1,4 +1,5 @@
 var $ = jQuery.noConflict();
+var active = null;
 $(function() {
     $('div.circle').mouseover(function() {
         $(this).find('div.outer-circle').addClass('hover');
@@ -63,11 +64,33 @@ function makeDialog() {
 				bValid = bValid && check(name, "name");
 				bValid = bValid && check(last_name, "last name");
 				if (bValid) {
+					if($("#member_form #id").val()=="0"){
+						var parent = active.parents("tr.parent:first");
+						var members = active.parents("tr.parent:first").next("tr.members");
+						var text = "";
+						if(members.html()!="")
+							text += "<td class='empty'>&nbsp;</td>";
+						text += "<td><table class='circles'><tr class='parent'>"+parent.html()+"</tr><tr class='members'></tr></table></td>";
+						
+						var code = $("#member_form #code").val();
+						var name = $("#member_form #name").val();
+						var last_name = $("#member_form #last_name").val();
+						var form = $(text).find("div.circle:first");
+						//var show = form.children("");
+						
+						code.val(form.find("input.code").val());
+						name.val(form.find("input.name").val());
+						last_name.val(form.find("input.last_name").val());
+						parent_id.val(form.find("input.parent_id").val());
+					}
+					else{
+						
+					}
 					$(this).dialog("close");
 				}
 			},
 			Cancel: function() {
-				$(this).dialog( "close" );
+				$(this).dialog("close");
 			}
 		},
 		close: function() {
@@ -76,6 +99,7 @@ function makeDialog() {
 			$("#member_form input").removeAttr("disabled");
 			$("#member_form").closest("div[aria-labelledby='ui-dialog-title-member_form']").find(".ui-dialog-buttonpane").find("button:last").find(".ui-button-text").html("Cancel");
 			$("#member_form").closest("div[aria-labelledby='ui-dialog-title-member_form']").find(".ui-dialog-buttonpane button:first").show();
+			active = null;
 		}
 	});
 	
@@ -133,11 +157,13 @@ function center(){
 }
 
 function addMember(target){
+	active = $(target);
 	$("#ui-dialog-title-member_form").html("Add Member");
 	$("#member_form").dialog("open");
 }
 
 function removeMember(target){
+	active = $(target);
 	var form = $(target).closest("div.circle").children("div.data");
 	var full_name = form.find("input.name").val()+" "+form.find("input.last_name").val();
 	var texts = $("#confirm p").html().split("?");
@@ -146,6 +172,7 @@ function removeMember(target){
 }
 
 function editMember(target){
+	active = $(target);
 	loadFields(target);
 	$("#ui-dialog-title-member_form").html("Edit Member");
 	$("#member_form").dialog("open");
@@ -162,11 +189,13 @@ function showMember(target){
 }
 
 function loadFields(target){
+	var id = $("#member_form #id");
 	var code = $("#member_form #code");
 	var name = $("#member_form #name");
 	var last_name = $("#member_form #last_name");
 	var parent_id = $("#member_form #parent_id");
 	var form = $(target).closest("div.circle").children("div.data");
+	id.val(form.find("input.id").val());
 	code.val(form.find("input.code").val());
 	name.val(form.find("input.name").val());
 	last_name.val(form.find("input.last_name").val());
