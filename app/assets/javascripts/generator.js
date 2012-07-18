@@ -2,8 +2,9 @@ var $ = jQuery.noConflict();
 var active = null;
 var paper = null;
 var lines = new Array();
+var confirmation = "";
 $(function() {
-
+	confirmation = $("#confirm p").html();
 	paper = Raphael(0, 0, 0, 0);
 	$("svg").css("height","100%").css("width","100%");
 	addCircleAnimation("div.circle");
@@ -86,7 +87,6 @@ function makeDialog() {
 						var member = $(text);
 						var form = $(member).find("div.circle:first");
 						var data = form.children("div.data");
-						
 						id = "new_0";
 						form.attr("id", "member_"+id);
 						form.find("span.member").html(name.val()+" "+last_name.val());
@@ -136,14 +136,17 @@ function makeDialog() {
 		modal: true,
 		buttons: {
 			"Yes, I'm Sure": function() {
-				active.parents("table.circles:first").closest("td:first").remove();
+				active.parents("table.circles:first").parents("td:first").prev("td.empty").remove();
+				active.parents("table.circles:first").parents("td:first").remove();
 				active = null;
 				center();
 				bindMembers();
 				$(this).dialog("close");
+				$("#confirm p").html(confirmation);
 			},
 			Cancel: function() {
 				$(this).dialog("close");
+				$("#confirm p").html(confirmation);
 				active = null;
 			}
 		}
@@ -194,9 +197,9 @@ function addMember(target){
 
 function removeMember(target){
 	active = $(target);
-	var form = $(target).closest("div.circle").children("div.data");
+	var form = $(target).parents("div.circle:first").children("div.data");
 	var full_name = form.find("input.name").val()+" "+form.find("input.last_name").val();
-	var texts = $("#confirm p").html().split("?");
+	var texts = confirmation.split("?");
 	$("#confirm p").html(texts[0]+" "+full_name+"?"+texts[1]);
 	$("#confirm").dialog("open");
 }
