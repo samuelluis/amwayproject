@@ -4,14 +4,16 @@ var paper = null;
 var lines = new Array();
 var confirmation = "";
 $(function() {
-	confirmation = $("#confirm p").html();
-	paper = Raphael(0, 0, 0, 0);
-	$("svg").css("height","100%").css("width","100%");
-	addCircleAnimation("div.circle");
-	addFlashTitle('.flash');
-	center();
-	bindMembers();
-	makeDialog();
+	if($("div#member_form").length>0){
+		confirmation = $("#confirm p").html();
+		paper = Raphael(0, 0, 0, 0);
+		$("svg").css("height","100%").css("width","100%");
+		addCircleAnimation("div.circle");
+		addFlashTitle('.flash');
+		center();
+		bindMembers();
+		makeDialog();
+	}
 });
 
 function addCircleAnimation(element){
