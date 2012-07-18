@@ -3,6 +3,11 @@ header.png: header-2abe0183b82470b998ea5ea37d80c7bf.png
 rails.png: rails-be8732dac73d845ac5b142c8fb5f9fb0.png
 application.js: application-5bc91bae27dd8f102fe807effe8fbfee.js
 application.css: application-74729241d159a6cb0148a07f2a188148.css
+js/generator.js: js/generator.js
+js/raphael-min.js: js/raphael-min.js
+css/generator.css: css/generator.css
+js/jquery-ui-1.8.13.custom.min.js: js/jquery-ui-1.8.13.custom.min.js
+css/jquery-ui-1.8.4.custom.css: css/jquery-ui-1.8.4.custom.css
 images/ui-bg_flat_0_aaaaaa_40x100.png: images/ui-bg_flat_0_aaaaaa_40x100-a1eb3e0764573ed4b261ca742ed96ac3.png
 images/ui-bg_flat_75_ffffff_40x100.png: images/ui-bg_flat_75_ffffff_40x100-841636c8f8d33987bb8d2f31e8ef92ca.png
 images/ui-bg_glass_55_fbf9ee_1x400.png: images/ui-bg_glass_55_fbf9ee_1x400-bbb04adbe79f471d8c88a2bc691231b6.png
