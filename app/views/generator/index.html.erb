@@ -10,21 +10,19 @@
 </div>
 <div id="body">
 	<table class="circles">
-		<tr>
+		<tr class="parent">
 			<td>
 				<%= render :partial => "generator/circle", :locals => { :id => 1, :code => "1234", :name => "Samuel", :last_name => "Luis De La Cruz", :parent_id => nil, :points => "300" }%>
 			</td>
 		</tr>
-		<tr>
-			
-		</tr>
+		<tr class="members"></tr>
 	</table>
 </div>
 
 <div id="member_form" title="Add Member">
 	<p class="validateTips">All form fields are required.</p>
 	<fieldset>
-		<input type="hidden" name="id" id="id" />
+		<input type="hidden" name="id" id="id" value="0" />
 		<input type="hidden" name="parent_id" id="parent_id" />
 		<div class="field">
 			<label for="code">Code</label>

@@ -1,35 +1,47 @@
 var $ = jQuery.noConflict();
 var active = null;
+var paper = null;
+var lines = new Array();
 $(function() {
-    $('div.circle').mouseover(function() {
-        $(this).find('div.outer-circle').addClass('hover');
-        $(this).find('div.middle-circle').addClass('hover');
-				$(this).find('div.middle-circle .action-circle').addClass('hover');
-    });
-    $('div.circle').mouseout(function() {
-        $(this).find('div.outer-circle').removeClass('hover');
-        $(this).find('div.middle-circle').removeClass('hover');
-				$(this).find('div.middle-circle .action-circle').removeClass('hover');
-    });
-		
-		var title = "";
-    $('.flash').mouseover(function(e) {
-				title = $(this).attr("title");
-				$(this).removeAttr("title");
-				$("#flash").html(title);
-				$("#flash").css("top",(e.pageY-40)+"px").css("left",(e.pageX)+"px");
-				$("#flash").addClass("hover");
-    });
-    $('.flash').mouseout(function() {
-				$(this).attr("title", title);
-				$("#flash").removeClass("hover");
-				$("#flash").html("");
-				$("#flash").css("top","0px").css("left","0px");
-    });
+
+	paper = Raphael(0, 0, 0, 0);
+	$("svg").css("height","100%").css("width","100%");
+	addCircleAnimation("div.circle");
+	addFlashTitle('.flash');
 	center();
 	bindMembers();
 	makeDialog();
 });
+
+function addCircleAnimation(element){
+    $(element).mouseover(function() {
+        $(this).find('div.outer-circle').addClass('hover');
+        $(this).find('div.middle-circle').addClass('hover');
+		$(this).find('div.middle-circle .action-circle').addClass('hover');
+    });
+    $(element).mouseout(function() {
+        $(this).find('div.outer-circle').removeClass('hover');
+        $(this).find('div.middle-circle').removeClass('hover');
+		$(this).find('div.middle-circle .action-circle').removeClass('hover');
+    });
+}
+
+function addFlashTitle(element){
+	var title = "";
+    $(element).mouseover(function(e) {
+		title = $(this).attr("title");
+		$(this).removeAttr("title");
+		$("#flash").html(title);
+		$("#flash").css("top",(e.pageY-40)+"px").css("left",(e.pageX)+"px");
+		$("#flash").addClass("hover");
+    });
+    $(element).mouseout(function() {
+		$(this).attr("title", title);
+		$("#flash").removeClass("hover");
+		$("#flash").html("");
+		$("#flash").css("top","0px").css("left","0px");
+    });
+}
 
 function makeDialog() {
 	$("#dialog:ui-dialog").dialog("destroy");
@@ -71,20 +83,32 @@ function makeDialog() {
 						if(members.html()!="")
 							text += "<td class='empty'>&nbsp;</td>";
 						text += "<td><table class='circles'><tr class='parent'>"+parent.html()+"</tr><tr class='members'></tr></table></td>";
+						var member = $(text);
+						var form = $(member).find("div.circle:first");
+						var data = form.children("div.data");
 						
-						var code = $("#member_form #code").val();
-						var name = $("#member_form #name").val();
-						var last_name = $("#member_form #last_name").val();
-						var form = $(text).find("div.circle:first");
-						//var show = form.children("");
-						
-						code.val(form.find("input.code").val());
-						name.val(form.find("input.name").val());
-						last_name.val(form.find("input.last_name").val());
-						parent_id.val(form.find("input.parent_id").val());
+						id = "new_0";
+						form.attr("id", "member_"+id);
+						form.find("span.member").html(name.val()+" "+last_name.val());
+						//form.find("span.points").html("300");
+						data.children("input.id").val(id);
+						data.children("input.code").val(code.val());
+						data.children("input.name").val(name.val());
+						data.children("input.last_name").val(last_name.val());
+						data.children("input.parent_id").val(data.children("input.id").val());
+						members.append(member);
+						addFlashTitle(form.find('.flash'));
+						addCircleAnimation(form);
 					}
 					else{
+						var form = active.parents("div.circle:first");
+						var data = form.children("div.data");
 						
+						form.find("span.member").html(name.val()+" "+last_name.val());
+						//form.find("span.points").html("300");
+						data.children("input.code").val(code.val());
+						data.children("input.name").val(name.val());
+						data.children("input.last_name").val(last_name.val());
 					}
 					$(this).dialog("close");
 				}
@@ -100,6 +124,8 @@ function makeDialog() {
 			$("#member_form").closest("div[aria-labelledby='ui-dialog-title-member_form']").find(".ui-dialog-buttonpane").find("button:last").find(".ui-button-text").html("Cancel");
 			$("#member_form").closest("div[aria-labelledby='ui-dialog-title-member_form']").find(".ui-dialog-buttonpane button:first").show();
 			active = null;
+			center();
+			bindMembers();
 		}
 	});
 	
@@ -110,10 +136,15 @@ function makeDialog() {
 		modal: true,
 		buttons: {
 			"Yes, I'm Sure": function() {
-				
+				active.parents("table.circles:first").remove();
+				active = null;
+				center();
+				bindMembers();
+				$(this).dialog("close");
 			},
 			Cancel: function() {
-				$(this).dialog( "close" );
+				$(this).dialog("close");
+				active = null;
 			}
 		}
 	});
@@ -121,8 +152,7 @@ function makeDialog() {
 }
 
 function bindMembers(){
-	var paper = Raphael(0, 0, 0, 0);
-	$("svg").css("height","100%").css("width","100%");
+	$("path").remove();
 	$("table.circles").each(function(){
 		if($(this).children("tbody").children("tr").length>1){
 			var parent = $(this).children("tbody").children("tr:first").children("td:first");
@@ -140,7 +170,7 @@ function bindMembers(){
 					var mheight = member.height();
 					var mx = member.position().left+(mwidth/2);
 					var my = member.position().top+(mheight/2);
-					var c = paper.path("M"+px+" "+py+"L"+mx+" "+my);
+					lines.push(paper.path("M"+px+" "+py+"L"+mx+" "+my));
 				}
 			});
 		}
