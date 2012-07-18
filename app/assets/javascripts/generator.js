@@ -121,6 +121,7 @@ function makeDialog() {
 		},
 		close: function() {
 			allFields.val("").removeClass("ui-state-error");
+			$("#id").val("0");
 			$(".validateTips").show();
 			$("#member_form input").removeAttr("disabled");
 			$("#member_form").closest("div[aria-labelledby='ui-dialog-title-member_form']").find(".ui-dialog-buttonpane").find("button:last").find(".ui-button-text").html("Cancel");
