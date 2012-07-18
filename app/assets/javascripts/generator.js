@@ -136,7 +136,7 @@ function makeDialog() {
 		modal: true,
 		buttons: {
 			"Yes, I'm Sure": function() {
-				active.parents("table.circles:first").remove();
+				active.parents("table.circles:first").closest("td:first").remove();
 				active = null;
 				center();
 				bindMembers();
