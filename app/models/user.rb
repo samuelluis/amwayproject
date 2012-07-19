@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :person_id, :person
   
-  belongs_to :person
+  has_one :member
+  has_one :person, :through => :member
   
   def name
     if self.person.nil?

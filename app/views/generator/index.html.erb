@@ -1,14 +1,21 @@
-
+<% current_user ||= User.first %>
+<%= current_user.id %>
 <div id="body">
 	<table class="circles">
 		<tr class="parent">
 			<td>
-				<%= render :partial => "generator/circle", :locals => { :id => 1, :code => "1234", :name => "Leandro", :last_name => "Fondeur", :parent_id => nil, :points => "300" }%>
+				<%= render :partial => "generator/circle", :locals => { :member => current_user.member }%>
 			</td>
 		</tr>
 		<tr class="members"></tr>
 	</table>
 </div>
+
+<script>
+	$(function(){
+		loadMemberTree(<%= current_user.member.id %>);
+	});
+</script>
 
 <div id="member_form" title="Add Member">
 	<p class="validateTips">All form fields are required.</p>
@@ -26,6 +33,10 @@
 		<div class="field">
 			<label for="last_name">Last Name</label>
 			<input type="text" name="last_name" id="last_name" value="" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="points">Last Name</label>
+			<input type="text" name="points" id="points" value="300" class="text ui-widget-content ui-corner-all" />
 		</div>
 	</fieldset>
 </div>
