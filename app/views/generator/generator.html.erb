@@ -1,0 +1,51 @@
+<% if !current_user %>
+	<%= redirect_to "/users/sign_in" %>
+<% end %>
+<% current_user ||= User.first %>
+<div id="body">
+	<table class="circles">
+		<tr class="parent">
+			<td>
+				<%= render :partial => "generator/circle", :locals => { :member => current_user.member }%>
+			</td>
+		</tr>
+		<tr class="members"></tr>
+	</table>
+</div>
+
+<script>
+	$(function(){
+		loadMemberTree(<%= current_user.member.id %>);
+	});
+</script>
+
+<div id="member_form" title="Add Member">
+	<p class="validateTips">All form fields are required.</p>
+	<fieldset>
+		<input type="hidden" name="id" id="id" value="0" />
+		<input type="hidden" name="parent_id" id="parent_id" />
+		<div class="field">
+			<label for="code">Code</label>
+			<input type="text" name="code" id="code" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="name">Name</label>
+			<input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="last_name">Last Name</label>
+			<input type="text" name="last_name" id="last_name" value="" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="points">Last Name</label>
+			<input type="text" name="points" id="points" value="300" class="text ui-widget-content ui-corner-all" />
+		</div>
+	</fieldset>
+</div>
+
+<div id="confirm" title="Confirmation">
+	<p>
+		Are you sure of removing member ?<br><br>
+		Children members will be removed to.
+	</p>
+</div>

@@ -15,9 +15,13 @@
 			<h3 id="title">Amway Project</h3>
 			<h5 id="subtitle">Network Model Generator</h5>
 			<ul id="menu">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Generator</a></li>
-				<li><a href="#">Logout</a></li>
+				<li><%= link_to "Home", :root %></li>
+				<li><%= link_to "Generator", "/admin/generator/generator" %></li>
+				<% if current_user %>
+					<li><%= link_to "Logout", "/users/sing_out" %></li>
+				<% else %>
+					<li><%= link_to "Login", "/users/sign_in" %></li>
+				<% end %>
 			</ul>
 		</div>
 		<%= yield %>

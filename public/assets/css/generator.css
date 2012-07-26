@@ -1,86 +1,87 @@
 body {
-	margin:0px;
+  margin:0px;
 }
 
 .hide{
-	display:none;
+  display:none;
 }
 
 div#header h3#title {
-	color: white;
-	font-weight: normal;
-	font-size:20px;
-	display: inline;
-	position: absolute;
-	top: 5px;
-	left:15px;
+  color: white;
+  font-weight: normal;
+  font-size:20px;
+  display: inline;
+  position: absolute;
+  top: 5px;
+  left:15px;
 }
 
 h5#subtitle{
-	color:white;
-	position: absolute;	
-	top:25px;
-	left:15px;
-	font-size:11px;
-	font-weight: normal;
+  color:white;
+  position: absolute; 
+  top:25px;
+  left:15px;
+  font-size:11px;
+  font-weight: normal;
 }
 
 ul#menu li {
-	display: block;
-	float: left;
-	margin-right: 20px;
-	cursor:pointer;
+  display: block;
+  float: left;
+  margin-right: 20px;
+  cursor:pointer;
 }
 
 ul#menu a {
-	color:white;
-	text-decoration:none;
-	cursor:pointer;
+  color:white;
+  text-decoration:none;
+  background: none;
+  cursor:pointer;
 }
 
 ul#menu {
-	float: right;
-	margin-top: 15px;
+  float: right;
+  margin-top: 15px;
 }
 
 div#header{
-	width: 100%;
-	height: 43px;
-	background:#000000 url('header.png') repeat-x;
+  width: 100%;
+  height: 43px;
+  background:#000000 url('header.png') repeat-x;
   position: fixed;
   top:0px;
 }
 
 
 div#body {
-	padding:0px;
+  padding:0px;
   margin-top: 80px;
-	text-align: center;
+  text-align: center;
 }
 
 table.circles{
-	margin: 0px auto;
-	margin-top:30px;
-	table-layout: fixed;
+  margin: 0px auto;
+  margin-top:30px;
+  table-layout: fixed;
 }
 
 table.circles td {
-	text-align: center;
-	vertical-align:top;
+  text-align: center;
+  vertical-align:top;
 }
 
 table.circles td.empty {
-	min-width:30px;
+  min-width:30px;
 }
 
 table.circles tr.empty td {
-	height:30px;
+  height:30px;
 }
 
 div.circle {
   width:124px;
   height:124px;
-	margin: 0px auto;
+  margin: 0px auto;
 }
 
 div.outer-circle { 
@@ -136,14 +137,14 @@ div.middle-circle.hover {
 
 div.inner-circle {
     margin:14px;
-		padding-top:7px;
+    padding-top:7px;
     background:#3f96d1;
     width:96px;
     height:89px;
     font-size:11px;
     color:#FFF;
     line-height:15px;
-		border-collapse: separate;
+    border-collapse: separate;
     display: table;
     text-align:center;
     font-family:Arial;
@@ -170,7 +171,7 @@ div.action-circle {
   line-height:20px;
   font-size:14px;
   color:#FFF;
-	border-collapse: separate;
+  border-collapse: separate;
   display: table;
   text-align:center;
   font-family:Arial;
@@ -187,46 +188,46 @@ div.action-circle {
   -moz-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
-	cursor:pointer;
+  cursor:pointer;
   opacity:0;
 }
 
 div.action-circle.hover {
     opacity:1;
-		cursor:pointer;
+    cursor:pointer;
 }
 
 div.action-circle .content{
     display: table-row;
     vertical-align: middle;
-		cursor:pointer;
+    cursor:pointer;
 }
 
 div.inner-circle .member{
-	font-weight:bold;
-	display:block;
+  font-weight:bold;
+  display:block;
 }
 
 div.inner-circle .points{
-	opacity: .5;
-	font-weight: bold;
-	font-size: 16px;
+  opacity: .5;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 #flash{
-	color:white;
-	font-weight:normal;
-	background:black url('header.png') repeat-x;
-	position:absolute;
-	opacity:0;
+  color:white;
+  font-weight:normal;
+  background:black url('header.png') repeat-x;
+  position:absolute;
+  opacity:0;
   -webkit-border-radius: 10%;
   -moz-border-radius: 10%;
   border-radius: 10%;
   -webkit-box-shadow: inset 0px 1px 1px 0px #575757;
   -moz-box-shadow: inset 0px 1px 1px 0px #575757;
   box-shadow: inset 0px 1px 1px 0px #575757;
-	padding:2px 10px;
-	z-index:9000;
+  padding:2px 10px;
+  z-index:9000;
   -webkit-transition: opacity .3s ease-in-out;
   -moz-transition: opacity .3s ease-in-out;
   -o-transition: opacity .3s ease-in-out;
@@ -234,15 +235,15 @@ div.inner-circle .points{
 }
 
 #flash.hover{
-	opacity:1;
+  opacity:1;
 }
 
 #member_form{
-	padding-top:10px;
+  padding-top:10px;
 }
 
 #member_form fieldset{
-	margin: 0;
+  margin: 0;
   padding: 0;
   border: 0;
   font-weight: normal;
@@ -253,13 +254,13 @@ div.inner-circle .points{
 }
 
 #member_form .field{
-	margin-top: 20px;
-	margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #member_form input{
-	margin-left: 10px;
-	margin-top: -10px;
+  margin-left: 10px;
+  margin-top: -10px;
 }
 
 table {
@@ -268,7 +269,7 @@ table {
 }
 
 #member_form .validateTips{
-	margin-bottom:20px;
+  margin-bottom:20px;
 }
 
 label {

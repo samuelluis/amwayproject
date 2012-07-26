@@ -7,14 +7,18 @@ $(function() {
 	if($("div#member_form").length>0){
 		confirmation = $("#confirm p").html();
 		paper = Raphael(0, 0, 0, 0);
-		$("svg").css("height","100%").css("width","100%");
-		addCircleAnimation("div.circle");
-		addFlashTitle('.flash');
-		center();
-		bindMembers();
+		$("svg").css("height","100%").css("width","100%").css("z-index","-1000");
 		makeDialog();
 	}
 });
+
+function init(){
+	if($("div#member_form").length>0){
+		addCircleAnimation("div.circle");
+		addFlashTitle('.flash');
+		bindMembers();
+	}
+}
 
 function addCircleAnimation(element){
     $(element).mouseover(function() {
@@ -119,7 +123,7 @@ function makeDialog() {
 				$(this).dialog("close");
 			}
 		},
-		close: function() {
+		close: function(event, ui) {
 			allFields.val("").removeClass("ui-state-error");
 			$(".validateTips").show();
 			$("#member_form input").removeAttr("disabled");
@@ -128,6 +132,7 @@ function makeDialog() {
 			active = null;
 			center();
 			bindMembers();
+			$("input#id").val("0");
 		}
 	});
 	
@@ -154,6 +159,21 @@ function makeDialog() {
 		}
 	});
 	
+}
+
+function loadMemberTree(parent){
+	$.ajax({
+		type: 'POST',
+        url: "/generator/get_members/"+parent,
+        success: function(data) {
+        	$("div.circle#member_"+parent).parents("table.circles:first").find("tr.members:first").append(data);
+        	$(data).find("tr.parent").each(function(){
+        		loadMemberTree($(this).find("div.data:first").find("input.id").val());
+        	});
+        	center();
+        	init();
+        }
+	});
 }
 
 function bindMembers(){
