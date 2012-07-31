@@ -1,0 +1,60 @@
+<%= stylesheet_link_tag "generator", :media => "all" %>
+<%= stylesheet_link_tag "jquery-ui-1.8.4.custom", :media => "all" %>
+<%= javascript_include_tag "jquery-ui-1.8.13.custom.min" %>
+<%= javascript_include_tag "raphael-min" %>
+<%= javascript_include_tag "generator" %>
+<%
+def tree_of(parent)
+	members = parent.members.map{ |m| "<td><table class='circles'><tr class='parent'><td>"+(render :partial => "generator/circle", :locals => { :member => m })+"</td></tr><tr class='members'>#{ (m.members.count>0) ? tree_of(m) : "" }</tr></table></td>" }
+	return members.join("<td class='empty'>&nbsp;</td>").html_safe
+end
+%>
+
+<div id="body" class="hide">
+	<form accept-charset="UTF-8" action="/admin/generator/save_model" class="form-horizontal denser" id="save_model" method="post">
+		<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="GFVJ9DUD+BJFr8i4fTiNMLTY1W3o+KtNjlfACU1hxL8="></div>
+		<table class="circles">
+			<tr class="parent">
+				<td>
+					<%= render :partial => "generator/circle", :locals => { :member => current_user.member }%>
+				</td>
+			</tr>
+			<tr class="members"><%= tree_of(current_user.member) %></tr>
+		</table>
+		<div class="form-actions">
+			<button class="btn btn-primary" data-disable-with="Save" name="_save" type="submit"><i class="icon-white icon-ok"></i>Save</button>
+			<span class="extra_buttons"><button class="btn" data-disable-with="Cancel" name="_continue" type="submit"><i class="icon-remove"></i>Cancel</button></span>
+		</div>
+	</form>
+</div>
+
+<div id="member_form" title="Add Member">
+	<p class="validateTips">All form fields are required.</p>
+	<fieldset>
+		<input type="hidden" name="id" id="id" value="0" />
+		<input type="hidden" name="parent_id" id="parent_id" />
+		<div class="field">
+			<label for="code">Code</label>
+			<input type="text" name="code" id="code" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="name">Name</label>
+			<input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="last_name">Last Name</label>
+			<input type="text" name="last_name" id="last_name" value="" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="points">Points</label>
+			<input type="text" name="points" id="points" value="300" class="text ui-widget-content ui-corner-all" />
+		</div>
+	</fieldset>
+</div>
+
+<div id="confirm" title="Confirmation">
+	<p>
+		Are you sure of removing member ?<br><br>
+		Children members will be removed to.
+	</p>
+</div>

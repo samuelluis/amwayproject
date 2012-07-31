@@ -272,6 +272,15 @@ table {
   margin-bottom:20px;
 }
 
+#body .form-actions{
+  text-align: left;
+  margin-top: 100px;
+}
+
+.compute label{
+  padding-right: 20px;
+}
+
 label {
   padding-top: 6px;
   font-size: 13px;

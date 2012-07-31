@@ -10,7 +10,7 @@
 		<div class='action-circle flash' title='Edit' onclick='editMember(event.target);' style='margin-left:4px;margin-top:51px;'>
 			<span class='content'>!</span>
 		</div>
-		<div class='action-circle flash' title='Show' onclick='showMember(event.target);' style='margin-left:98px;margin-top:51px;'>
+		<div class='action-circle flash' title='Show' onclick='showMember(<%= member.id %>);' style='margin-left:98px;margin-top:51px;'>
 			<span class='content'>?</span>
 		</div>
 	</div>
@@ -28,5 +28,43 @@
 		<input name='members[<%= member.id %>][points]' id='members_<%= member.id %>_points' value='<%= member.points %>' class='points' />
 		<input name='members[<%= member.id %>][person][name]' id='members_<%= member.id %>_person_name' value='<%= member.person.name %>' class='name' />
 		<input name='members[<%= member.id %>][person][last_name]' id='members_<%= member.id %>_person_last_name' value='<%= member.person.last_name %>' class='last_name' />
+	</div>
+	<div id="compute_<%= member.id %>" title="<%= member.code %> - <%= member.person.name %> <%= member.person.last_name %>" class="compute">
+		<fieldset>
+			<div class="field">
+				<label><%= number_to_currency(member.bv, :precision => 2) %></label>
+				<b>BV</b>
+			</div>
+			<div class="field">
+				<label><%= number_to_currency(member.group_bv, :precision => 0, :format => "%n") %></label>
+				<b>Group BV</b>
+			</div>
+			<div class="field">
+				<label><%= number_to_currency(member.pv, :precision => 0, :format => "%n") %></label>
+				<b>PV</b>
+			</div>
+			<div class="field">
+				<label><%= member.bonus %>%</label>
+				<b>Bonus</b>
+			</div>
+			<div class="field">
+				<label><%= member.ibo_profit %>%</label>
+				<b>IBO Profit</b>
+			</div>
+			<hr>
+			<div class="field">
+				<label><%= number_to_currency(member.sales_profit, :precision => 2) %></label>
+				<b>Sales Profit</b>
+			</div>
+			<div class="field">
+				<label><%= number_to_currency(member.bonus_total, :precision => 2) %></label>
+				<b>Bonus Total</b>
+			</div>
+			<hr>
+			<div class="field">
+				<label><%= number_to_currency(member.total, :precision => 2) %></label>
+				<b>Total</b>
+			</div>
+		</fieldset>
 	</div>
 </div>

@@ -1,8 +1,15 @@
 class Ability
   include CanCan::Ability
+  require 'generator'
 
   def initialize(user)
-    can :manage, :all
+    #can :manage, :all
+    can :access, :rails_admin
+    can :dashboard
+    can :generator
+    can :manage, Member, :id => user.member.get_tree
+    can :manage, User, :id => user.id
+    can :manage, Person, :id => user.member.get_tree.map{|m| m.person.id}
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

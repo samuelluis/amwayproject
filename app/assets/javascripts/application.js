@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-var $ = jQuery.noConflict();
+//var $ = jQuery.noConflict();
+
+$(function(){
+	$(".navbar-inner li:last").remove();
+});

@@ -9,14 +9,6 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module ActionView
-    class Base
-        def redirect_to(url)
-            "<script>window.location = '#{url}';</script>".html_safe
-        end
-    end
-end
-
 module Amwayproject
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
