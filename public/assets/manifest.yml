@@ -6,11 +6,11 @@ header.png: header.png
 rails.png: rails.png
 application.js: application.js
 application.css: application.css
-js/generator.js: js/generator.js
-js/raphael-min.js: js/raphael-min.js
-css/generator.css: css/generator.css
-js/jquery-ui-1.8.13.custom.min.js: js/jquery-ui-1.8.13.custom.min.js
-css/jquery-ui-1.8.4.custom.css: css/jquery-ui-1.8.4.custom.css
+generator.js: js/generator.js
+raphael-min.js: js/raphael-min.js
+generator.css: css/generator.css
+jquery-ui-1.8.13.custom.min.js: js/jquery-ui-1.8.13.custom.min.js
+jquery-ui-1.8.4.custom.css: css/jquery-ui-1.8.4.custom.css
 images/ui-bg_flat_0_aaaaaa_40x100.png: images/ui-bg_flat_0_aaaaaa_40x100.png
 images/ui-bg_flat_75_ffffff_40x100.png: images/ui-bg_flat_75_ffffff_40x100.png
 images/ui-bg_glass_55_fbf9ee_1x400.png: images/ui-bg_glass_55_fbf9ee_1x400.png
