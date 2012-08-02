@@ -56,7 +56,7 @@ class Member < ActiveRecord::Base
   def bonus
     before_key = nil
     bonus_table.keys.each do |k|
-      if self.points < k
+      if self.pv < k
         return bonus_table[before_key.to_i].to_i
       end
       before_key = k
