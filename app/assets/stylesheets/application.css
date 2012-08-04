@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require jquery-ui-1.8.4.custom
 */
 
 /*=======================================================================================================
@@ -446,6 +446,10 @@ div.inner-circle .points{
   margin-right: 50px;
 }
 
+#body .form-actions button{
+	margin-top: 5px;
+}
+
 .compute label{
   padding-right: 20px;
 }
@@ -456,7 +460,7 @@ div.inner-circle .points{
   font-weight: normal;
 }
 
-#body label {
+label {
   padding-top: 6px;
   font-size: 13px;
   line-height: 18px;
@@ -466,7 +470,7 @@ div.inner-circle .points{
   color: #404040;
 }
 
-#body input, #body textarea, #body select, #body .uneditable-input {
+input, textarea, .uneditable-input {
   display: inline-block;
   width: 210px;
   height: 20px;
@@ -481,7 +485,7 @@ div.inner-circle .points{
 }
 
 
-#body h1, #body h2, #body h3, #body h4, #body h5, #body h6, #body p, #body blockquote, #body pre, #body a, #body abbr, #body acronym, #body address, #body cite, #body code, #body del, #body dfn, #body em, #body img, #body q, #body s, #body samp, #body small, #body strike, #body strong, #body sub, #body sup, #body tt, #body var, #body dd, #body dl, #body dt, #body li, #body ol, #body ul, #body fieldset, #body form, #body label, #body legend, #body button, #body table, #body caption, #body tbody, #body tfoot, #body thead, #body tr, #body th, #body td {
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend, button, caption, tbody, tfoot, thead, tr, th, td {
   margin: 0;
   padding: 0;
   border: 0;
@@ -492,7 +496,7 @@ div.inner-circle .points{
   font-family: inherit;
 }
 
-#body input:focus, #body textarea:focus {
+input:focus, textarea:focus {
   outline: 0;
   border-color: rgba(82, 168, 236, 0.8);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);

@@ -1,4 +1,3 @@
-<%= stylesheet_link_tag "application", :media => "all" %>
 <% parent = current_user.member %>
 <% parent.current_model = (params[:id] && Model.where(:id => params[:id].to_i).first) ? Model.where(:id => params[:id].to_i).first : (parent.models.by_date(Time.now.to_date).first||Model.new(:parent => parent, :model_date => Time.now.to_date)) %>
 <%
@@ -9,10 +8,16 @@ def tree_of(parent, model)
 	return members.html_safe
 end
 %>
+<script type="text/javascript">
+	var param = <%= params[:wo_pjax].to_i %>;
+	if(param==0){
+		window.location = "/admin/generator?wo_pjax=1"
+	}
+</script>
 
 <div id="body" class="hide">
 	<form accept-charset="UTF-8" action="/admin/generator/save_model" class="form-horizontal denser" id="save_model" method="post">
-		<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="xWA+EO3DyCL/oB+2A6qDMyRW6OKeD+NUownJPSMhYSQ="></div>
+		<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="s3baYGe91/X/V1zDi7QagE/gCm2j/caPadOBrCohl70="></div>
 		<table class="circles">
 			<tr class="parent">
 				<td>
@@ -35,7 +40,7 @@ end
 </div>
 
 <div id="flash"></div>
-<div id="member_form" title="Add Member">
+<div id="member_form" title="Add Member" class="generator_dialog hide">
 	<p class="validateTips">All form fields are required.</p>
 	<fieldset>
 		<input type="hidden" name="id" id="id" value="0" />
@@ -58,15 +63,14 @@ end
 		</div>
 	</fieldset>
 </div>
-
-<div id="confirm" title="Confirmation">
+<div id="confirm" title="Confirmation" class="hide">
 	<p>
 		Are you sure of removing member ?<br><br>
 		Children members will be removed to.
 	</p>
 </div>
 
-<div id="message" title="Message">
+<div id="message" title="Message" class="hide">
 	<p>
 		Unsaved changes are not be available to calculation.<br><br>
 		Please Save the Model and then continue.

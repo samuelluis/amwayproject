@@ -16,4 +16,5 @@
 
 $(function(){
 	$(".navbar-inner li:last").remove();
+	$("a[href='/admin/generator']").removeClass("pjax");
 });

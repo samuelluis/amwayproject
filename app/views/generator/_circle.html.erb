@@ -30,7 +30,7 @@
 		<input name='members[<%= member.id %>][person][name]' value='<%= member.person.name %>' class='name' />
 		<input name='members[<%= member.id %>][person][last_name]' value='<%= member.person.last_name %>' class='last_name' />
 	</div>
-	<div id="compute_<%= member.id %>" title="<%= member.code %> - <%= member.person.name %> <%= member.person.last_name %>" class="compute">
+	<div id="compute_<%= member.id %>" title="<%= member.code %> - <%= member.person.name %> <%= member.person.last_name %>" class="compute generator_dialog">
 		<fieldset>
 			<div class="field">
 				<label><%= number_to_currency(member.bv, :precision => 2) %></label>
