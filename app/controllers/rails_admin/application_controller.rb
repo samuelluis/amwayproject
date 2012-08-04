@@ -20,6 +20,10 @@ module RailsAdmin
       end
     end
 
+    before_filter :if => Proc.new{ |c| (c.request.path.split("/")[2] == "generator") } do
+        @head_stylesheet_path = 'application.css'
+    end
+
     def get_model
       @model_name = to_model_name(params[:model_name])
       raise RailsAdmin::ModelNotFound unless (@abstract_model = RailsAdmin::AbstractModel.new(@model_name))
