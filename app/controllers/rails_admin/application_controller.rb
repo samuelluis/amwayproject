@@ -10,16 +10,6 @@ module RailsAdmin
   class ApplicationController < ::ApplicationController
     newrelic_ignore if defined?(NewRelic)
 
-    before_filter :_authenticate!, :except => Proc.new{ |c| c.request.path == "/admin/member/new" } do
-      puts "Authenticate!"
-    end
-    before_filter :_authorize!, :except => Proc.new{ |c| c.request.path == "/admin/member/new" } do
-      puts "Authorize!"
-    end
-    before_filter :_audit!, :except => Proc.new{ |c| c.request.path == "/admin/member/new" } do
-      puts "Audit!"
-    end
-
     helper_method :_current_user, :_attr_accessible_role, :_get_plugin_name
 
     attr_reader :object, :model_config, :abstract_model
