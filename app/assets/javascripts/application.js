@@ -9,7 +9,9 @@
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
-//
+//= require jquery-ui-1.8.13.custom.min
+//= require raphael-min
+//= require generator
 //var $ = jQuery.noConflict();
 
 $(function(){
