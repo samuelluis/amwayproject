@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Amway Simulator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+      body {
+        margin:0px;
+        padding:0px;
+        color: #666;
+        font-family: Tahoma, Geneva, sans-serif;
+        font-size:13px;
+        line-height:1.5em; 
+        background-color: #212121;
+        background-image: url(images/body.png);
+        background-repeat: repeat;
+      }
+
+      a, a:link, a:visited { 
+        font-size: 12px;
+        color: #000;
+        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration:none;
+        color: #CC0000;
+      }
+
+      p { margin: 0px; padding: 0 0 20px 0; }
+      img { border: none; }
+
+      h1, h2, h3, h4, h5 { font-weight: normal; }
+      h1 { font-size: 32px; color: #000; margin: 0 0 30px 0; padding: 5px 0; }
+      h2 { font-size: 20px; color: #000; margin: 0 0 20px 0; padding: 0 0 10px 0; border-bottom: 1px dashed #999; }
+      h3 { font-size: 21px; color: #333; margin: 0 0 20px 0; padding: 0; text-decoration: none; font-weight: normal; }
+      h3 a { text-decoration: none; font-weight: normal; }
+      h3 span { color: #69F; }
+      h4 { font-size: 18px; color: #000; margin: 0 0 10px 0; padding: 0; }
+      h5 { font-size: 14px; height: 20px; color: #000; margin: 0 0 10px 0; padding: 2px 8px; background: url(images/h5_bg.png) no-repeat top left; } 
+      h6 { font-size: 12px; margin: 0 0 5px 0; padding: 0;}
+
+      .cleaner { clear: both; width: 100%; height: 0px; font-size: 0px;  }
+      .cleaner_h10 { clear: both; width:100%; height: 10px; }
+      .cleaner_h20 { clear: both; width:100%; height: 20px; }
+      .cleaner_h30 { clear: both; width:100%; height: 30px; }
+      .cleaner_h40 { clear: both; width:100%; height: 40px; }
+      .cleaner_h50 { clear: both; width:100%; height: 50px; }
+      .cleaner_h60 { clear: both; width:100%; height: 60px; }
+
+      .margin_r10 { margin-right: 10px; }
+      .float_l { float: left; }
+      .float_r { float: right; }
+
+      .image_wrapper { padding: 8px; border: 1px solid #000; background: #0f1115; }
+      .fl_img { float: left; margin: 3px 30px 15px 0; }
+      .fr_img { float: right; margin: 3px 0 15px 15px; }
+
+      .image_wrapper_01 { position: relative; width: 297px; height: 102px; padding: 8px 0 0 8px; margin-bottom: 15px; }
+      .image_wrapper_01 span { position: absolute; top: 0; left: 0; width: 305px; height: 110px; background: url(images/image_frame_01.png) no-repeat; }
+
+      blockquote { font-style: italic; }
+      cite { font-weight: bold; }
+      cite span { color: #fff; }
+
+      ul { margin: 15px; padding: 0; list-style: none; } 
+      ul li { padding: 0 0 0 20px; margin: 0 0 5px 0; background: url(images/list_01.png) left center no-repeat; }
+
+      #body_wrapper {
+        background: url(images/body_top.png) repeat-x top;
+      }
+
+      #main_wrapper {
+        width: 966px;
+        padding: 0 15px;
+        margin: 0 auto;
+      }
+
+      /* header */
+
+      #temmplatemo_header {
+        padding: 20px 30px;
+        background: url(images/header.png) top center;
+      }
+
+      #temmplatemo_header .header_left {
+        float: left;
+        width: 300px;
+      }
+
+      #temmplatemo_header .header_right {
+        float: right;
+        width: 580px;
+      }
+
+      /* site title */
+
+      #temmplatemo_header  #site_title {
+        float: left;
+        width: 200px;
+        padding: 40px 0 0 0;
+      }
+
+
+      #site_title a {
+        margin: 0px;
+        padding: 0px;
+        font-size: 26px;
+        color: #ffffff;
+        font-weight: normal;
+        text-decoration: none;
+      }
+
+      #site_title h1 a:hover {
+        font-weight: bold;  
+        text-decoration: none;
+      }
+
+      #site_title a span {
+        display: block;
+        margin-top: 5px;
+        color: #fff;
+        font-size: 11px;
+        text-align: center;
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      /* end of site title */
+
+      /* search */
+
+      #search_box {
+        float: right;
+        margin-bottom: 50px;
+      }
+
+      #search_box form {
+        margin: 0;
+        padding: 0;
+      }
+
+      #search_box #input_field {
+        height: 13px;
+        width: 150px;
+        color: #fff;
+        font-size: 12px;
+        padding: 5px;
+        font-variant: normal;
+        line-height: normal;
+        border: 1px solid #212121;
+        background: #3a3a3a;
+      }
+
+      #search_box #submit_btn {
+        height: 26px;
+        cursor: pointer;
+        padding: 2px 5px 5px 5px;
+        font-size: 12px;
+        text-align: center;
+        vertical-align: bottom;
+        white-space: pre;
+        outline: none;
+        color:#666666;
+        border: 1px solid #000;
+        background: #333;
+      }
+
+      /* end of search */
+
+      /* menu */
+
+      #temmplatemo_header #menu {
+        clear: both;
+        float: right;
+        height: 37px;
+        margin-top: 12px;
+      }
+
+      #menu ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      #menu ul li {
+        padding: 0;
+        margin: 0;
+        display: inline;
+      }
+
+      #menu ul li a {
+        float: left;
+        display: block;
+        height: 35px;
+        width: 57px;
+        margin-left: 30px;
+        padding: 2px 0 0 0;
+        text-align: center;
+        font-size: 14px;
+        text-decoration: none;
+        color: #fff;  
+        font-weight: normal;
+        outline: none;
+      }
+
+      #menu li a:hover, #menu li .current {
+        background: url(images/menu_hover.png) no-repeat;
+      }
+
+      /* end of menu */
+
+      /* end of header */
+
+      /* content */
+
+      #content_outer {
+        background: url(images/content.png) repeat-y;
+      }
+
+      #content_inner {
+        padding: 40px 30px;
+        background: url(images/content_top.png) no-repeat;
+      }
+
+      #content_bottom {
+        width: 966px;
+        height: 25px;
+        background: url(images/content_bottom.png) 
+        float:left;
+      }
+
+      #content {
+        float: right;
+        width: 620px;
+      }
+
+      .content_two_col {
+        float: left;
+        width: 305px;
+      }
+
+      #sidebar {
+        float: left;
+        width: 260px;
+      }
+
+      .sidebar_box {
+        margin-bottom: 40px;
+      }
+
+      .sidebar_box .sidebar_box_p_divider {
+        border-bottom: 1px dashed #000;
+        margin-bottom: 20px;
+      }
+
+
+      /* end of content */
+
+      /* newsletter */
+
+      #newsletter_box {
+        clear: both;
+        width: 850px;
+        height: 106px;
+        padding: 0 30px;
+        background: url(images/newsletter_box.png) no-repeat;
+      }
+
+      #newsletter_box .box {
+        float: left;
+        width: 240px;
+        margin: 15px 20px 0 0;
+
+      }
+
+      #newsletter_box .box p {
+        margin: 0;
+        padding: 0;
+      }
+
+      #newsletter_box .box span {
+        color: #F60;
+      }
+
+      #newsletter_subscribe_box {
+        float: left;
+        width: 238px;
+        height: 101px;
+        margin: 3px 0 0 0;
+        padding: 20px 0 0 30px;
+        background: url(images/newsletter_subscribe_box.png) no-repeat;
+      }
+
+      #newsletter_subscribe_box form {
+        margin: 0px;
+        padding: 0px;
+        font-size: 11px;
+      }
+
+      #newsletter_email {
+        width: 200px;
+        height: 17px;
+        padding: 3px 5px;
+        margin-bottom: 10px;
+        background: url(images/newsletter_email_field_bg.png) no-repeat;
+        border: none;
+        line-height: normal;
+      }
+
+      #newsletter_submit{
+        border: none;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: bottom;
+        white-space: pre;
+        width: 35px;
+        height: 23px;
+        padding: 0 0 3px 0;
+        background: url(images/button_02.png) no-repeat;
+      }
+
+      .col_w560 {
+        width: 560px;
+      }
+
+      .col_w300 {
+        width: 300px;
+      }
+
+      .col_w120 {
+        width: 140px;
+      }
+
+      #contact_box {
+        margin: 0px;
+        padding: 0px;
+        font-size: 11px;
+      }
+
+      #contact_box .inputfiled {
+        width: 130px;
+        height: 17px;
+        padding: 3px 5px;
+        margin-bottom: 10px;
+        background: #d8d8d8;
+        border: 1px solid #cbcbcb;
+        line-height: normal;
+      }
+
+      #contact_box #message_input{
+        width: 130px;
+        height: 86px;
+        padding: 3px 5px;
+        background: #d8d8d8;
+        border: 1px solid #cbcbcb;  
+      }
+
+      #contact_box #contact_submit{
+        float: right;
+        border: none;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: bottom;
+        white-space: pre;
+        width: 53px;
+        height: 23px;
+        padding: 0 0 10px 0;
+        background: url(images/button_01.png) no-repeat;
+      }
+      /* end of newsletter */
+
+      /* footer */
+      #footer {
+        clear: both;
+        color: #868686;
+        padding: 20px 30px;
+        text-align: center;
+      }
+
+      #footer a{
+        color: #a3a3a3;
+        font-weight: normal;
+      }
+      /* end of footer */
+    </style>
+  </head>
+<body>
+  <div id="body_wrapper">
+    <div id="main_wrapper">
+      <div id="temmplatemo_header">
+        <div class="header_left">
+          <div id="site_title"> <a href="#"> <img src="logo.png" alt="" width="269" height="133" /></a> </div>
+        </div>
+        <div class="header_right" style="margin-top:120px;">
+          <div id="menu">
+            <ul>
+              <li><a href="/" class="current">Inicio</a></li>
+              <li><a href="/admin/generator">Modelo</a></li>
+              <li><a href="/admin">Admin</a></li>
+              <li><a href="/admin/member/new">Registro</a></li>
+              <li><a href="http://www.amway.com.do/" target="_blank">Oficial</a></li>
+            </ul>
+          </div>
+          <!-- end of menu -->
+        </div>
+        <div class="cleaner"></div>
+      </div>
+      <!-- end of header -->
+      <div id="content_outer">
+        <div id="content_inner">
+          <div id="sidebar">
+            <div class="sidebar_box"> <img src="logo-itla.jpg" alt="" width="240" height="95" />
+              <div class="cleaner_h20"></div>
+              <p>Amway ofrece una serie extensa de niveles que un  empresario independiente puede alcanzar. Para alcanzar estos niveles se debe  estar en cumplimiento del plan de compensación del empresario independiente de AMWAY  y de las reglas de conducta en todo momento. Para calificar por estos niveles  debes de cumplir una serie de requisitos previamente establecidos por los  niveles.          </p>
+            </div>
+            <div class="sidebar_box">
+              <p class="sidebar_box_p_divider"><strong><a>Auspiciador al 25%</a></strong></p>
+              <p>Puedes  calificar como auspiciador al 25% si: Registras a un IBO norteamericano que  califique como Productor Plata o Platino.<br />
+                Eres  elegible para recibir:<br />
+                •  Una Bonificación de Rendimiento del 25%.</p>
+              <p class="sidebar_box_p_divider"><strong><a>Productor Plata</a></strong> </p>
+              <p>Puedes  calificar como Productor Plata si logras cualquiera de los siguientes  requisitos durante un mes:<br />
+                1.  Generar Volumen de Premio de por lo menos 7,500 PV, o<br />
+                2.  Registrar personal o localmente a un grupo norteamericano calificado al nivel  del Bonificación de Rendimiento del 25%, y generar un Volumen de Premio de por  lo menos 2,500 PV durante el mismo mes, o
+                3. Registrar personal o localmente por lo menos  a 2 grupos norteamericanos calificados al nivel de Bonificación de Rendimiento  del 25% durante el mismo mes
+              </p>
+            </div>
+          </div>
+          <div id="content">
+            <h1>Amway Project</h1>
+            <p>AMWAY PROJECT, consta de una breve  reseña del Negocio en las cuales se  desarrollan los niveles que pueden alcanzarse dentro del negocio, el sistema de  bonificación del negocio, el sistema de educación eFinity. Además de esto se presentan los  diagramas de un Programa de Calculo de Ingresos de AMWAY.</p>
+            <p>&nbsp;</p>
+          <div class="cleaner_h20"></div>
+            <h2>eFinity</h2>
+            <div class="content_two_col margin_r10">
+              <div class="image_wrapper"> <span></span> <img src="images/efinity_logo.png" alt="" width="290" /> </div>
+              <h5>Educación en redes</h5>
+              <ul>
+                <li>Administración de negocios</li>
+                <li>Educación profesional</li>
+                <li>Asistencia de mercade</li>
+                <li>Empresario independiente          </li>
+              </ul>
+            </div>
+            <div class="content_two_col">
+              <div class="image_wrapper"> <span></span> <img src="negocios-multinivel.jpg" alt="" width="266" height="103" /> </div>
+              <h5>Cree su propia red</h5>
+              <ul>
+                <li>Descubra como gana dinero</li>
+                <li>Piense en grande          </li>
+              </ul>
+            </div>
+            <div class="cleaner"></div>
+          </div>
+          <!-- end of content -->
+      </div>
+      <div id="content_bottom"></div>
+      <div class="cleaner"></div>
+    </div>
+    <div class="cleaner"></div>
+  </div>
+  <!-- end of wrapper -->
+  </body>
+</html>

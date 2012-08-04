@@ -1,0 +1,35 @@
+<div class="loginBox">
+	
+	<div class="loginHeader">
+		<h1 class="loginTitle">Change your password</h1>
+	</div>
+	<br/>
+	<span class="signInHr"><hr/></span>
+	<div class="loginContent">
+		<br/><br/>
+        <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+            <%= devise_error_messages! %>
+            <%= f.hidden_field :reset_password_token %>
+    	    <div class="loginContent2">
+    		    <div class="loginField">
+                    <%= f.label :password, "New password" %><br />
+                    <%= f.password_field :password %>
+                </div>
+                <br/><br/>
+                <div class="loginField">
+                    <%= f.label :password_confirmation, "Confirm new password" %><br />
+                    <%= f.password_field :password_confirmation %>
+                </div>
+                <br/><br/><br/>
+                <div class="loginSubmit">
+                    <%= f.submit "Change my password", :class => " btn2 primary" %>
+                </div>
+        	    <br/>
+        	    <br/><br/>
+        <% end %>
+            <div class="sharedLinks">
+                <%= render :partial => "devise/shared/links" %>
+            </div>
+        </div>
+    </div>    
+</div>

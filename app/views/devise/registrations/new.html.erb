@@ -1,0 +1,35 @@
+<br/><br/>
+<div class="loginBox">
+	<div class="loginHeader">
+		<h2 class="loginTitle">Sign up</h2>
+	</div>
+		<div class="loginContent">
+		<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+		<div class="loginContent2">
+		  <%= devise_error_messages! %>
+
+			<div>
+				<div class="loginLabel"><%= f.label :email %></div>
+				<div class="loginField"><%= f.email_field :email %></div>
+			</div>
+			<br/>
+
+			<div>
+				<div class="loginLabel"><%= f.label :password %></div>
+				<div class="loginField"><%= f.password_field :password %></div>
+			</div>
+			<br/>
+
+			<div>
+				<div class="loginLabel"><%= f.label :password_confirmation %></div>
+				<div class="loginField"><%= f.password_field :password_confirmation %></div>
+			</div>
+			<br/>
+	
+		  <div class="loginSubmit"><%= f.submit "Sign Up", :class => "btn2 loginImage" %></div>
+		  <div class="loginSubmit right"><a href="/users/sign_in" class=" btn2" style="text-decoration: none;font-size: 14px;">Sign In</a></div>
+		<% end %>
+		</div>
+	</div>
+</div>
+

@@ -9,19 +9,18 @@ $(function() {
 		paper = Raphael(0, 0, 0, 0);
 		$("svg").css("height","100%").css("width","100%").css("z-index","-1000");
 		makeDialog();
-		//$(window).resize(function(){
-		//	bindMembers();
-		//});
-		//$(window).scroll(function(){
-		//	bindMembers();
-		//});
-		//$(document).mousemove(function(){
-		//	bindMembers();
-		//});
 		center();
 		$("#body").fadeIn("slow", function(){	
 			init();
-			bindMembers();
+			$(window).resize(function(){
+				bindMembers();
+			});
+			$(window).scroll(function(){
+				bindMembers();
+			});
+			$(document).mousemove(function(){
+				bindMembers();
+			});
 		});
 	}
 });
@@ -125,27 +124,26 @@ function makeDialog() {
 						form.find("div.inner-circle").find("span.points").html(parseInt(points.val()));
 						form.attr("id", "member_"+id);
 						form.find("span.member").html(name.val()+" "+last_name.val());
-						data.children("input.id").val(id);
-						data.children("input.code").val(code.val());
-						data.children("input.name").val(name.val());
-						data.children("input.last_name").val(last_name.val());
-						data.children("input.points").val(parseInt(points.val()));
-						data.children("input.parent_id").val(data.children("input.id").val());
 
-						data.children("input.id").attr("name", "members[new]["+counter+"][id]");
-						data.children("input.code").attr("name", "members[new]["+counter+"][code]");
-						data.children("input.name").attr("name", "members[new]["+counter+"][person][name]");
-						data.children("input.last_name").attr("name", "members[new][][person][last_name]");
-						data.children("input.points").attr("name", "members[new]["+counter+"][points]");
-						data.children("input.parent_id").attr("name", "members[new]["+counter+"][parent_id]");
+						data.find("input.code").attr("value",code.val());
+						data.find("input.name").attr("value",name.val());
+						data.find("input.last_name").attr("value",last_name.val());
+						data.find("input.points").attr("value",parseInt(points.val()));
+						data.find("input.parent_id").attr("value",data.find("input.id").attr("value"));
+						data.find("input.id").attr("value",id);
 
-						data.children("input.id").attr("id", "members[new]["+counter+"][id]");
-						data.children("input.code").attr("id", "members[new]["+counter+"][code]");
-						data.children("input.name").attr("id", "members[new]["+counter+"][person][name]");
-						data.children("input.last_name").attr("id", "members[new]["+counter+"][person][last_name]");
-						data.children("input.points").attr("id", "members[new]["+counter+"][points]");
-						data.children("input.parent_id").attr("id", "members[new]["+counter+"][parent_id]");
+						data.find("input.id").attr("name", "members[new]["+counter+"][id]");
+						data.find("input.code").attr("name", "members[new]["+counter+"][code]");
+						data.find("input.name").attr("name", "members[new]["+counter+"][person][name]");
+						data.find("input.last_name").attr("name", "members[new]["+counter+"][person][last_name]");
+						data.find("input.points").attr("name", "members[new]["+counter+"][member_model][points]");
+						data.find("input.parent_id").attr("name", "members[new]["+counter+"][parent_id]");
 
+						form.find(".action-circle:last").attr("onclick", "");
+						form.find(".action-circle:last").click(function(){
+							$("#message").dialog("open");
+						});
+			
 						members.append(member);
 						addFlashTitle(form.find('.flash'));
 						addCircleAnimation(form);
@@ -153,13 +151,16 @@ function makeDialog() {
 					else{
 						var form = active.parents("div.circle:first");
 						var data = form.children("div.data");
-						
 						form.find("div.inner-circle").find("span.points").html(parseInt(points.val()));
 						form.find("span.member").html(name.val()+" "+last_name.val());
-						data.children("input.code").val(code.val());
-						data.children("input.name").val(name.val());
-						data.children("input.last_name").val(last_name.val());
-						data.children("input.points").val(parseInt(points.val()));
+						form.find(".action-circle:last").attr("onclick", "");
+						form.find(".action-circle:last").click(function(){
+							$("#message").dialog("open");
+						});
+						data.children("input.code").attr("value",code.val());
+						data.children("input.name").attr("value",name.val());
+						data.children("input.last_name").attr("value",last_name.val());
+						data.children("input.points").attr("value",parseInt(points.val()));
 					}
 					$(this).dialog("close");
 				}
@@ -208,9 +209,21 @@ function makeDialog() {
 		}
 	});
 
+	$("#message").dialog({
+		autoOpen: false,
+		height: 160,
+		width: 400,
+		modal: true,
+		buttons: {
+			Close: function() {
+				$(this).dialog("close");
+			}
+		}
+	});
+
 	$(".compute").dialog({
 		autoOpen: false,
-		height: 300,
+		height: 320,
 		width: 300,
 		modal: true,
 		buttons: {
@@ -234,12 +247,10 @@ function loadMemberTree(parent){
         		var exist = false;
         		var child = $(this).find("div.data:first").find("input.id").val();
         		$("div.data input.id").each(function(){
-        			//alert($(this).val()+"=="+child+": "+($(this).val()==child));
         			if($(this).val()==child){
         				exist = true;
         			}
         		});
-        		//alert(exist);
         		if(!exist){
         			loadMemberTree(child);
         		}
@@ -251,6 +262,7 @@ function loadMemberTree(parent){
 }
 
 function bindMembers(){
+	$("svg").css("height",$(document).height()).css("width",$(document).width());
 	$("path").remove();
 	$("table.circles").each(function(){
 		if($(this).children("tbody").children("tr").length>1){

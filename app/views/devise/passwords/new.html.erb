@@ -1,0 +1,28 @@
+
+<div class="loginBox">
+	<div class="loginHeader">
+		<h1 class="loginTitle">Forgot your password?</h1>
+	</div>
+	<br/>
+	<span class="signInHr"><hr/></span>
+	<div class="loginContent">
+	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+	<br/><br/><br/>
+		<div class="loginContent2">
+  			<%= devise_error_messages! %>
+
+		  	<div class="loginField">
+				<%= f.label :email %>
+		  		<%= f.email_field :email %>
+			</div><br/><br/><br/>
+
+		  	<div class="loginSubmit"><%= f.submit "Send me reset password instructions", :class => "btn2 primary longBtn" %></div>
+			<% end %>
+		
+			<br/>
+			<div class="sharedLinks">
+				<%= render :partial => "devise/shared/links" %>
+			</div>
+		</div>
+	</div>
+</div>

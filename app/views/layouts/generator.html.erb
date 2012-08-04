@@ -16,15 +16,10 @@
 			<h5 id="subtitle">Network Model Generator</h5>
 			<ul id="menu">
 				<li><%= link_to "Home", :root %></li>
-				<li><%= link_to "Generator", "/admin/generator/generator" %></li>
-				<% if current_user %>
-					<li><%= link_to "Logout", "/users/sing_out" %></li>
-				<% else %>
-					<li><%= link_to "Login", "/users/sign_in" %></li>
-				<% end %>
+				<li><%= link_to "Generator", "/admin/generator" %></li>
+				<li><%= link_to "Sing Up", "/users/sign_up" %></li>
 			</ul>
 		</div>
 		<%= yield %>
-		<div id="flash"></div>
 	</body>
 </html>

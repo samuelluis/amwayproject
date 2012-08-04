@@ -275,10 +275,21 @@ table {
 #body .form-actions{
   text-align: left;
   margin-top: 100px;
+  padding-left: 50px
+}
+
+#body .form-model-date{
+  margin-right: 50px;
 }
 
 .compute label{
   padding-right: 20px;
+}
+
+.ui-state-error.paragraph{
+  line-height: 15px;
+  font-size: 12px;
+  font-weight: normal;
 }
 
 label {
