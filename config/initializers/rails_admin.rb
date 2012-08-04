@@ -33,5 +33,39 @@ RailsAdmin.config do |config|
   	  field :parent
   	  field :members
 	  end
+    edit do
+      field :name
+      field :code
+      field :parent
+      field :person
+    end
+  end
+
+  config.model User do
+    list do
+      field :person
+      field :email
+      field :member
+    end
+    edit do
+      field :email
+      field :password
+      field :password_confirmation
+      field :member
+    end
+  end
+
+  config.model Person do
+    list do
+      field :name
+      field :last_name
+      field :member
+      field :user
+    end
+    edit do
+      field :name
+      field :last_name
+      field :member
+    end
   end
 end

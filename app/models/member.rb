@@ -1,13 +1,16 @@
 class Member < ActiveRecord::Base
   belongs_to :parent, :class_name => "Member"
   belongs_to :person
-  belongs_to :user
+  has_one :user
   
   has_many :members, :foreign_key => "parent_id"
   has_many :models, :foreign_key => "parent_id"
   has_many :member_models
 
   attr_accessor :current_model
+  attr_accessible :person, :person_attributes, :name, :code, :parent, :parent_id, :members, :member_ids, :user, :current_model
+
+  accepts_nested_attributes_for :person, :allow_destroy => true
   
   def name
     if self.person.nil?

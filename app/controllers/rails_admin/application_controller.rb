@@ -18,7 +18,7 @@ module RailsAdmin
       puts "User: #{current_user}"
       if current_user.nil?
         redirect_to "/users/sign_in", :flash => {:warning => "Please customize your account by registering as Member to enjoy the Generator view."}
-      elsif current_user.member.nil? && (c.request.path.split("/")[2] != "user" && c.request.path.split("/")[4] != "edit")
+      elsif current_user.member.nil? && (c.request.path.split("/")[2] != "user" || c.request.path.split("/")[4] != "edit")
         redirect_to "/admin/user/#{current_user.id}/edit", :flash => {:warning => "Please customize your account by registering as Member to enjoy the Generator view."}
       end
     end

@@ -6,10 +6,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :person_id, :person
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :person, :member, :member_attributes
   
-  has_one :member
+  belongs_to :member
   has_one :person, :through => :member
+
+  accepts_nested_attributes_for :member, :allow_destroy => true
   
   def name
     if self.person.nil?

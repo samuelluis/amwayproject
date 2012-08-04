@@ -3,6 +3,7 @@ class Ability
   require 'generator'
 
   def initialize(user)
+    cannot :manage, :all
     can :access, :rails_admin
     can :dashboard
     can :generator
