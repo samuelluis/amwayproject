@@ -14,6 +14,12 @@ module RailsAdmin
 
     attr_reader :object, :model_config, :abstract_model
 
+    before_filter :if => Proc.new{ |c| (c.request.path.split("/")[2] == "generator") } do
+      if current_user.member.nil?
+        redirect_to "/admin/user/#{current_user.id}/edit", :flash => {:warning => "Please customize your account by registering as Member to enjoy the Generator view."}
+      end
+    end
+
     def get_model
       @model_name = to_model_name(params[:model_name])
       raise RailsAdmin::ModelNotFound unless (@abstract_model = RailsAdmin::AbstractModel.new(@model_name))
