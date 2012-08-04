@@ -34,7 +34,6 @@ RailsAdmin.config do |config|
   	  field :members
 	  end
     edit do
-      field :name
       field :code
       field :parent
       field :person
@@ -65,7 +64,6 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :last_name
-      field :member
     end
   end
 end
