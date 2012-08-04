@@ -11,21 +11,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120705011155) do
+ActiveRecord::Schema.define(:version => 20120802191713) do
+
+  create_table "member_models", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "model_id"
+    t.integer  "points",     :default => 300
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "member_models", ["member_id"], :name => "index_member_models_on_member_id"
+  add_index "member_models", ["model_id"], :name => "index_member_models_on_model_id"
 
   create_table "members", :force => true do |t|
     t.string   "code"
-    t.integer  "points",     :default => 300
     t.integer  "parent_id"
     t.integer  "person_id"
     t.integer  "user_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "members", ["parent_id"], :name => "index_members_on_parent_id"
   add_index "members", ["person_id"], :name => "index_members_on_person_id"
   add_index "members", ["user_id"], :name => "index_members_on_user_id"
+
+  create_table "models", :force => true do |t|
+    t.integer  "parent_id"
+    t.integer  "parent_points", :default => 300
+    t.date     "model_date"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "models", ["parent_id"], :name => "index_models_on_parent_id"
 
   create_table "people", :force => true do |t|
     t.string   "name"

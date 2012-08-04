@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  parent: 
+  model_date: 2012-08-02
+
+two:
+  parent: 
+  model_date: 2012-08-02
