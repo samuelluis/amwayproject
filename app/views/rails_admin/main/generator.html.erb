@@ -1,0 +1,78 @@
+<%= stylesheet_link_tag "generator", :media => "all" %>
+<%= stylesheet_link_tag "jquery-ui-1.8.4.custom", :media => "all" %>
+<%= javascript_include_tag "jquery-ui-1.8.13.custom.min" %>
+<%= javascript_include_tag "raphael-min" %>
+<%= javascript_include_tag "generator" %>
+<% parent = current_user.member %>
+<% parent.current_model = (params[:id] && Model.where(:id => params[:id].to_i).first) ? Model.where(:id => params[:id].to_i).first : (parent.models.by_date(Time.now.to_date).first||Model.new(:parent => parent, :model_date => Time.now.to_date)) %>
+<%
+def tree_of(parent, model)
+	members = []
+	parent.members.collect{ |m| members << "<td><table class='circles'><tr class='parent'><td>"+(render :partial => "generator/circle", :locals => { :member => m, :model => model })+"</td></tr><tr class='members'>#{ (m.members.count>0) ? tree_of(m,model) : "" }</tr></table></td>" if model.member_ids.include?(m.id) }
+	members = members.join("<td class='empty'>&nbsp;</td>")
+	return members.html_safe
+end
+%>
+
+<div id="body" class="hide">
+	<form accept-charset="UTF-8" action="/admin/generator/save_model" class="form-horizontal denser" id="save_model" method="post">
+		<div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="xWA+EO3DyCL/oB+2A6qDMyRW6OKeD+NUownJPSMhYSQ="></div>
+		<table class="circles">
+			<tr class="parent">
+				<td>
+					<%= render :partial => "generator/circle", :locals => { :member => parent, :model => parent.current_model }%>
+				</td>
+			</tr>
+			<tr class="members"><%= tree_of(parent, parent.current_model) %></tr>
+		</table>
+		<input name="model_id" type="hidden" value="<%= parent.current_model.id.to_i %>">
+		<input name="parent_id" type="hidden" value="<%= parent.id.to_i %>">
+		<div class="form-actions">
+			<div class="form-model-date">
+				<label style="margin-top:5px;width:120px;">Year: <select style="width:80px;" name="year" value="<%= parent.current_model.model_date.year %>"><%= (1900..Time.now.year).to_a.map{ |y| "<option value='#{y}'#{" selected='selected'" if parent.current_model.model_date.year==y }>#{y}</option>" }.reverse.join.html_safe %></select></label>
+				<label style="margin-top:5px;width:150px;margin-right:50px;">Month: <select style="width:100px;" name="month" value="<%= parent.current_model.model_date.month %>"><%= (1..12).to_a.map{ |m| "<option value='#{m}'#{" selected='selected'" if parent.current_model.model_date.month==m }>#{Date.new(Time.now.year,m).strftime("%B")}</option>" }.reverse.join.html_safe %></select></label>
+			</div>
+			<button class="btn btn-primary" data-disable-with="Save" name="_save" type="submit" onclick='return confirm("The Model at this month could be overwrited. Continue?");'><i class="icon-white icon-ok"></i>Save</button>
+			<span class="extra_buttons"><button class="btn" data-disable-with="Load" name="_load" type="submit">Load</button></span>
+		</div>
+	</form>
+</div>
+
+<div id="flash"></div>
+<div id="member_form" title="Add Member">
+	<p class="validateTips">All form fields are required.</p>
+	<fieldset>
+		<input type="hidden" name="id" id="id" value="0" />
+		<input type="hidden" name="parent_id" id="parent_id" />
+		<div class="field">
+			<label for="code">Code</label>
+			<input type="text" name="code" id="code" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="name">Name</label>
+			<input type="text" name="name" id="name" value="" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="last_name">Last Name</label>
+			<input type="text" name="last_name" id="last_name" value="" class="text ui-widget-content ui-corner-all" />
+		</div>
+		<div class="field">
+			<label for="points">Points</label>
+			<input type="text" name="points" id="points" value="300" class="text ui-widget-content ui-corner-all" />
+		</div>
+	</fieldset>
+</div>
+
+<div id="confirm" title="Confirmation">
+	<p>
+		Are you sure of removing member ?<br><br>
+		Children members will be removed to.
+	</p>
+</div>
+
+<div id="message" title="Message">
+	<p>
+		Unsaved changes are not be available to calculation.<br><br>
+		Please Save the Model and then continue.
+	</p>
+</div>
