@@ -14,8 +14,11 @@ module RailsAdmin
 
     attr_reader :object, :model_config, :abstract_model
 
-    before_filter :if => Proc.new{ |c| (c.request.path.split("/")[2] == "generator") } do
-      if current_user.member.nil?
+    before_filter do |c|
+      puts "User: #{current_user}"
+      if current_user.nil?
+        redirect_to "/users/sign_in", :flash => {:warning => "Please customize your account by registering as Member to enjoy the Generator view."}
+      elsif current_user.member.nil? && (c.request.path.split("/")[2] != "user" && c.request.path.split("/")[4] != "edit")
         redirect_to "/admin/user/#{current_user.id}/edit", :flash => {:warning => "Please customize your account by registering as Member to enjoy the Generator view."}
       end
     end
