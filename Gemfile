@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'devise'
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.17'
 gem 'cancan'
 gem 'rails_admin'
 gem 'ice_cube'
